@@ -2,6 +2,7 @@
 import os
 import shutil
 from pathlib import Path
+from tkinter.filedialog import askdirectory
 
 from rich.console import Console
 from rich.panel import Panel
@@ -60,10 +61,7 @@ class RuntimeDir:
     def select_outdir(self):
         current = str(self.paths.outdir.location.expanduser().resolve())
 
-        directory = Prompt.ask(
-            prompt="Select the default directory for image outputs",
-            default=current,
-        )
+        directory = askdirectory(initialdir=current)
 
         self.paths.outdir = directory
         return directory
